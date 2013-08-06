@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head><title>SolrTrader Map</title></head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js
+
+"></script>
+<script src="js/springy.js"></script>
+<script src="js/springyui.js"></script>
+
+<script>
+var graphJSON = {
+  "nodes": [
+    "earth",
+    "earth-orbit",
+    "station-primus",
+    "mars-orbit",
+    "mars",
+    "venus-orbit",
+    "venus",
+    "mercury-orbit",
+    "mercury",
+    "asteroid-inner",
+    "ceres",
+    "asteroid-forest",
+    "asteroid-rim",
+    "vesta",
+    "unidentified-object",
+    "derelict-hulk-interior"
+  ],
+  "edges": [
+    ["earth", "earth-orbit"],
+    ["earth-orbit", "mars-orbit"],
+    ["earth-orbit", "earth"],
+    ["earth-orbit", "venus-orbit"],
+    ["earth-orbit", "station-primus"],
+    ["station-primus", "earth-orbit"],
+    ["mars-orbit", "mars"],
+    ["mars-orbit", "asteroid-inner"],
+    ["mars-orbit", "earth-orbit"],
+    ["mars", "mars-orbit"],
+    ["venus-orbit", "earth-orbit"],
+    ["venus-orbit", "venus"],
+    ["venus-orbit", "mercury-orbit"],
+    ["venus", "venus-orbit"],
+    ["mercury-orbit", "venus-orbit"],
+    ["mercury-orbit", "mercury"],
+    ["mercury", "mercury-orbit"],
+    ["asteroid-inner", "mars-orbit"],
+    ["asteroid-inner", "ceres"],
+    ["ceres", "asteroid-inner"],
+    ["ceres", "asteroid-forest"],
+    ["ceres", "vesta"],
+    ["ceres", "asteroid-rim"],
+    ["asteroid-forest", "ceres"],
+    ["asteroid-forest", "vesta"],
+    ["asteroid-rim", "ceres"],
+    ["asteroid-rim", "asteroid-inner"],
+    ["asteroid-rim", "vesta"],
+    ["asteroid-rim", "unidentified-object"],
+    ["vesta", "asteroid-rim"],
+    ["vesta", "asteroid-forest"],
+    ["vesta", "ceres"],
+    ["unidentified-object", "asteroid-rim"],
+    ["unidentified-object", "derelict-hulk-interior"],
+    ["derelict-hulk-interior", "unidentified-object"]
+  ]
+};
+
+jQuery(function(){
+  var graph = new Springy.Graph();
+  graph.loadJSON(graphJSON);
+
+  var springy = jQuery('#soltrader-map').springy({
+    graph: graph
+  });
+});
+</script>
+
+<canvas id="soltrader-map" width="1280" height="800" />
+
+</body>
+</html>
